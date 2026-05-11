@@ -60,7 +60,7 @@ namespace MiniMagaza.Controllers
             return RedirectToAction("Index");
         }
 
-        // STOKTAN DÜŞME İŞLEMİ
+        
         public IActionResult CompleteOrder()
         {
             var cartJson = HttpContext.Session.GetString("Sepetim");
@@ -73,12 +73,12 @@ namespace MiniMagaza.Controllers
                     var dbProduct = _context.Products.FirstOrDefault(p => p.Id == item.Id);
                     if (dbProduct != null && dbProduct.Stock > 0)
                     {
-                        dbProduct.Stock -= 1; // Stok düşür
+                        dbProduct.Stock -= 1; 
                     }
                 }
 
-                _context.SaveChanges(); // Veritabanına kaydet
-                HttpContext.Session.Remove("Sepetim"); // Sepeti temizle
+                _context.SaveChanges();
+                HttpContext.Session.Remove("Sepetim");
             }
 
             return RedirectToAction("OrderSuccess");
