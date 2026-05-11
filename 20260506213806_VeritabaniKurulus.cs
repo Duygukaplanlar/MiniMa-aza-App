@@ -4,10 +4,10 @@
 
 namespace MiniMagaza.Migrations
 {
-    /// <inheritdoc />
+    
     public partial class VeritabaniKurulus : Migration
     {
-        /// <inheritdoc />
+      
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -54,7 +54,7 @@ namespace MiniMagaza.Migrations
                 column: "CategoryId");
         }
 
-        /// <inheritdoc />
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
