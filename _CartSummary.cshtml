@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var cartJson = HttpContextAccessor.HttpContext.Session.GetString("Sepetim");
+    var cart = string.IsNullOrEmpty(cartJson)
+               ? new List<MiniMagaza.Models.Product>()
+               : JsonConvert.DeserializeObject<List<MiniMagaza.Models.Product>>(cartJson);
+    var count = cart?.Count ?? 0;
+}
+
+<a class="nav-link text-dark d-flex align-items-center" asp-controller="Cart" asp-action="Index" style="white-space: nowrap;">
+    <i class="bi bi-cart3 fs-5 me-1"></i>
+    <span class="fw-bold">Sepetim</span>
+    @if (count > 0)
+    {
+        <span class="badge rounded-pill bg-danger ms-2 shadow-sm">
+            @count
+        </span>
+    }
+</a>

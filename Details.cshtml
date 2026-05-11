@@ -1,0 +1,37 @@
+﻿@model MiniMagaza.Models.Product
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/images/@Model.ImageUrl" class="img-fluid rounded shadow" onerror="this.src='https://via.placeholder.com/500x500?text=Resim+Yok'">
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.Name</h2>
+            <p class="text-muted">Kategori: @Model.Category?.Name</p>
+            <hr />
+            <div class="mb-3">
+                @if (Model.DiscountPrice.HasValue && Model.DiscountPrice < Model.Price)
+                {
+                    <span class="text-muted text-decoration-line-through" style="font-size: 1.1rem;">
+                        @Model.Price.ToString("C2")
+                    </span>
+                    <br />
+                    <span class="text-danger fw-bold fs-3">
+                        @Model.DiscountPrice.Value.ToString("C2")
+                    </span>
+                }
+                else
+                {
+                    <span class="fw-bold fs-3 text-dark">
+                        @Model.Price.ToString("C2")
+                    </span>
+                }
+            </div>
+            <p class="mt-4">@Model.Description</p>
+            <p><strong>Stok:</strong> @Model.Stock adet</p>
+            
+            <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@Model.Id" class="btn btn-success btn-lg">Sepete Ekle</a>
+            <a asp-action="Index" class="btn btn-secondary btn-lg">Geri Dön</a>
+        </div>
+    </div>
+</div>
